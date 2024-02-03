@@ -1,20 +1,36 @@
 import utils
 import cv2
 import numpy as np
-import threading
 import time
 
 
 class HurturkTakip:
+
+    
+    ''' RESİM
+     1 2 3 4 5 6 7 8 9
+
+
+    
+    '''
+    
     teyit1:bool = False
-    constI:int = 0 
-    constJ:int = 0
+
+    # 
+    constI:int = 0     constJ:int = 0
+    
+    # roiCord -> tespit edilen nesnenin görüntü deki
     roiCord = []
+    
+    # Sayac -> iki farklı tespit içinolanb colldown da kullanılır
     sayac= 0
+
+
+    
     def __init__(self,camIndex = 0):
         self.haar_cascade = cv2.CascadeClassifier('ComputerVision/haarcascade_frontalface_default.xml')
         # ! camera ayarları
-        self.cap = cv2.VideoCapture(camIndex)
+        self.cap = cv2.VideoCapture(camIndex)      
         self.cap.set(3,1280)
         self.cap.set(4,720)
         self.cords = utils.alanBol(self.cap.read()[1],3,3)
